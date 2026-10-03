@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- الخلفية: كحلي داكن ملائم لهوية المنصة -->
+  <rect width="64" height="64" rx="14" fill="#0B132B"/>
+  
+  <!-- خطوط شبكة البيانات (Skills Graph Grid) -->
+  <line x1="32" y1="12" x2="32" y2="52" stroke="#1E293B" stroke-width="2"/>
+  <line x1="12" y1="32" x2="52" y2="32" stroke="#1E293B" stroke-width="2"/>
+  
+  <!-- العقد المترابطة (Nodes) -->
+  <circle cx="32" cy="14" r="3.5" fill="#38BDF8"/>
+  <circle cx="50" cy="32" r="3.5" fill="#38BDF8"/>
+  <circle cx="32" cy="50" r="3.5" fill="#38BDF8"/>
+  <circle cx="14" cy="32" r="3.5" fill="#38BDF8"/>
+  
+  <!-- مؤشر البوصلة الذكية (Skillcompass Pointer) -->
+  <polygon points="32,18 38,32 32,46 26,32" fill="#2563EB"/>
+  <polygon points="32,18 38,32 32,32" fill="#60A5FA"/>
+  
+  <!-- المركز الإشعاعي -->
+  <circle cx="32" cy="32" r="4" fill="#F8FAFC"/>
+</svg>
