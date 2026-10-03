@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skillcompass | AI-Powered Skills Intelligence</title>
+    
+    <!-- SEO & Metadata -->
+    <meta name="description" content="Skillcompass is an AI-powered Skills Intelligence platform analyzing labor-market data to understand changing skill demand and connect skills, jobs, people, education, and organizations. Founded by Sara Şahin in Istanbul, Türkiye.">
+    <meta name="keywords" content="Skills Intelligence, AI Skills Intelligence, Labor Market Intelligence, Workforce Analytics, Skills Gap Analysis, Skills Mapping, Future of Work, Workforce Intelligence, AI Workforce, Skills Analytics, Türkiye, Istanbul, Sara Şahin">
+    <meta name="author" content="Sara Şahin">
+    <meta name="robots" content="index, follow">
+
+    <!-- OpenGraph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://skillcompass.ai">
+    <meta property="og:title" content="Skillcompass | AI-Powered Skills Intelligence">
+    <meta property="og:description" content="Continuously analyzing labor-market data to map relationships between skills, jobs, education, and workforce demand. Led by Sara Şahin in Istanbul.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#030712',
+                            900: '#0B1120',
+                            850: '#0F172A',
+                            800: '#1E293B',
+                            700: '#334155',
+                        },
+                        cyanAccent: '#06B6D4',
+                        skyAccent: '#38BDF8',
+                        blueAccent: '#0284C7',
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s infinite ease-in-out',
+                        'float': 'float 6s infinite ease-in-out',
+                        'scan': 'scan 4s linear infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'scale(1.05)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        scan: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(1000%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphic card styling */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(2, 132, 199, 0.2);
+        }
+
+        .glass-nav {
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #FFFFFF 0%, #BAE6FD 50%, #38BDF8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-text-subtle {
+            background: linear-gradient(135deg, #E2E8F0 0%, #94A3B8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glowing accents */
+        .blue-glow {
+            box-shadow: 0 0 25px -5px rgba(2, 132, 199, 0.4);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284C7;
+        }
+
+        .grid-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyanAccent selection:text-navy-950">
+
+    <!-- NAVIGATION BAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#top" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blueAccent via-cyanAccent to-skyAccent p-0.5 flex items-center justify-center shadow-lg transition-transform group-hover:scale-105">
+                        <div class="w-full h-full bg-navy-950 rounded-[10px] flex items-center justify-center">
+                            <i class="fa-solid fa-compass text-skyAccent text-lg group-hover:rotate-45 transition-transform duration-500"></i>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg tracking-tight text-white flex items-center gap-1.5">
+                            Skillcompass
+                            <span class="w-1.5 h-1.5 rounded-full bg-cyanAccent animate-ping"></span>
+                        </span>
+                        <span class="text-[10px] uppercase tracking-widest text-slate-400 font-mono">Skills Navigation</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium text-slate-300">
+                    <a href="#overview" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/50 transition-colors">Overview</a>
+                    <a href="#problem" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/50 transition-colors">The Gap</a>
+                    <a href="#capabilities" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/50 transition-colors">Capabilities</a>
+                    <a href="#graph" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/50 transition-colors">Skills Graph</a>
+                    <a href="#use-cases" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/50 transition-colors">Use Cases</a>
+                    <a href="#technology" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/50 transition-colors">Data & AI</a>
+                    <a href="#roadmap" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/50 transition-colors">Roadmap</a>
+                    <a href="#founder" class="px-3 py-2 rounded-lg hover:text-white hover:bg-slate-800/50 transition-colors">Leadership</a>
+                </nav>
+
+                <!-- Header CTAs -->
+                <div class="hidden lg:flex items-center gap-3">
+                    <a href="#contact" class="text-xs uppercase tracking-wider font-semibold px-4 py-2.5 rounded-lg border border-slate-700 text-slate-200 hover:bg-slate-800 hover:text-white transition-all">
+                        Partner With Us
+                    </a>
+                    <a href="#graph" class="text-xs uppercase tracking-wider font-semibold px-4 py-2.5 rounded-lg bg-blueAccent hover:bg-sky-500 text-white transition-all shadow-md shadow-blue-900/30">
+                        Explore Platform
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-white p-2 rounded-lg focus:outline-none" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileDrawer" class="hidden md:hidden bg-navy-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#overview" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800">Overview</a>
+            <a href="#problem" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800">The Gap</a>
+            <a href="#capabilities" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800">Capabilities</a>
+            <a href="#graph" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800">Skills Graph</a>
+            <a href="#use-cases" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800">Use Cases</a>
+            <a href="#technology" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800">Data & AI</a>
+            <a href="#roadmap" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800">Roadmap</a>
+            <a href="#founder" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-slate-200 hover:bg-slate-800">Leadership</a>
+            <div class="pt-4 flex flex-col gap-2">
+                <a href="#contact" class="mobile-link text-center text-xs uppercase tracking-wider font-semibold px-4 py-3 rounded-lg border border-slate-700 text-slate-200 hover:bg-slate-800">
+                    Partner With Us
+                </a>
+                <a href="#graph" class="mobile-link text-center text-xs uppercase tracking-wider font-semibold px-4 py-3 rounded-lg bg-blueAccent text-white">
+                    Explore Platform
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="top" class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden grid-pattern">
+        <!-- Radial Gradient Spotlight -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blueAccent/15 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[400px] h-[400px] bg-cyanAccent/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Hero Text -->
+                <div class="lg:col-span-7 space-y-6 text-left">
+                    
+                    <!-- Eyebrow Tag -->
+                    <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-cyanAccent text-xs font-semibold tracking-wider uppercase shadow-inner">
+                        <span class="w-2 h-2 rounded-full bg-cyanAccent animate-pulse"></span>
+                        AI-POWERED SKILLS INTELLIGENCE
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15]">
+                        Navigate the skills <br class="hidden sm:inline" />
+                        <span class="gradient-text">of tomorrow.</span>
+                    </h1>
+
+                    <!-- Supporting Statement -->
+                    <p class="text-lg sm:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed">
+                        Skillcompass continuously analyzes labor-market data to reveal changing skill demand and connect skills with jobs, people, education, and organizations.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                        <a href="#graph" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blueAccent hover:bg-sky-500 text-white font-semibold text-sm tracking-wide transition-all shadow-lg shadow-blue-900/40 group">
+                            <span>Explore Skillcompass</span>
+                            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="#contact" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-slate-200 hover:text-white font-semibold text-sm tracking-wide transition-all">
+                            <span>Partner With Us</span>
+                            <i class="fa-solid fa-handshake text-slate-400"></i>
+                        </a>
+                    </div>
+
+                    <!-- Trust indicators / Context metrics -->
+                    <div class="pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-4 text-left">
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase tracking-wider font-mono">Location</p>
+                            <p class="text-sm font-semibold text-slate-200 mt-1 flex items-center gap-1.5">
+                                <i class="fa-solid fa-location-dot text-cyanAccent"></i> Istanbul, Türkiye
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase tracking-wider font-mono">Approach</p>
+                            <p class="text-sm font-semibold text-slate-200 mt-1 flex items-center gap-1.5">
+                                <i class="fa-solid fa-diagram-project text-skyAccent"></i> Ecosystem Graph
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase tracking-wider font-mono">Status</p>
+                            <p class="text-sm font-semibold text-slate-200 mt-1 flex items-center gap-1.5">
+                                <i class="fa-solid fa-flask text-emerald-400"></i> Active R&D
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Ecosystem Network Graph Visualizer -->
+                <div class="lg:col-span-5">
+                    <div class="glass-card rounded-2xl p-4 sm:p-6 border border-slate-800 relative group overflow-hidden">
+                        
+                        <!-- Header badge -->
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-cyanAccent animate-pulse"></div>
+                                <span class="text-xs font-mono font-medium text-slate-300 uppercase tracking-wider">Live Intelligence Ecosystem</span>
+                            </div>
+                            <span class="text-[10px] font-mono text-slate-500">Interactive Map</span>
+                        </div>
+
+                        <!-- Canvas Container -->
+                        <div class="relative w-full h-[320px] sm:h-[380px] bg-navy-950/80 rounded-xl overflow-hidden border border-slate-800/80">
+                            <canvas id="heroCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
+                            <div class="absolute bottom-3 left-3 right-3 px-3 py-2 rounded-lg bg-navy-900/90 border border-slate-800 text-[11px] font-mono text-slate-400 flex items-center justify-between">
+                                <span>Hover over nodes to explore context</span>
+                                <span class="text-cyanAccent font-semibold"><i class="fa-solid fa-circle-nodes mr-1"></i> Connected</span>
+                            </div>
+                        </div>
+
+                        <!-- Pipeline Flow Legend -->
+                        <div class="mt-4 grid grid-cols-3 gap-2 text-center text-[11px] font-mono">
+                            <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800/80">
+                                <span class="text-cyanAccent block font-semibold">Skills ↔ Jobs</span>
+                                <span class="text-slate-400 text-[10px]">Demand Tracking</span>
+                            </div>
+                            <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800/80">
+                                <span class="text-skyAccent block font-semibold">People ↔ Edu</span>
+                                <span class="text-slate-400 text-[10px]">Pathway Alignment</span>
+                            </div>
+                            <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800/80">
+                                <span class="text-emerald-400 block font-semibold">Orgs ↔ Market</span>
+                                <span class="text-slate-400 text-[10px]">Workforce Insights</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section id="problem" class="py-20 lg:py-28 bg-navy-900/60 relative border-y border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <span class="text-xs font-mono uppercase tracking-widest text-cyanAccent bg-cyan-950/50 border border-cyan-800/50 px-3 py-1 rounded-full">The Structural Challenge</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    The skills landscape is changing faster than traditional systems can track.
+                </h2>
+                <p class="text-slate-400 text-base sm:text-lg leading-relaxed">
+                    Rapid technological shifts and evolving labor dynamics leave institutions, educators, and organizations operating on outdated frameworks.
+                </p>
+            </div>
+
+            <!-- Problem Grid Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300 group-hover:text-cyanAccent group-hover:border-cyan-500/50 transition-all mb-4">
+                        <i class="fa-solid fa-table-list text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Static Job Classifications</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Conventional occupation codes fail to capture emerging cross-disciplinary skills, creating friction between titles and actual requirements.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300 group-hover:text-cyanAccent group-hover:border-cyan-500/50 transition-all mb-4">
+                        <i class="fa-solid fa-clock-rotate-left text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Outdated Skills Frameworks</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Curriculum standards and corporate competency models lag years behind real-time industrial demand shifts.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300 group-hover:text-cyanAccent group-hover:border-cyan-500/50 transition-all mb-4">
+                        <i class="fa-solid fa-square-poll-vertical text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Periodic Surveys</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Traditional workforce reports rely on annual or quarterly surveys that miss rapid, continuous skill transformations.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300 group-hover:text-cyanAccent group-hover:border-cyan-500/50 transition-all mb-4">
+                        <i class="fa-solid fa-network-wired text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Fragmented Datasets</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Labor market signals, university syllabi, corporate job postings, and credential data exist in disconnected silos.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300 group-hover:text-cyanAccent group-hover:border-cyan-500/50 transition-all mb-4">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Slow Curriculum Updates</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Higher education institutions struggle to adapt degree programs in time to prepare graduates for evolving market needs.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-300 group-hover:text-cyanAccent group-hover:border-cyan-500/50 transition-all mb-4">
+                        <i class="fa-solid fa-eye-slash text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Limited Skill Visibility</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Organizations lack granular insight into emerging skill combinations and internal talent capability gaps.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- THE CORE IDEA SECTION -->
+    <section id="overview" class="py-20 lg:py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <span class="text-xs font-mono uppercase tracking-widest text-skyAccent bg-sky-950/50 border border-sky-800/50 px-3 py-1 rounded-full">The Core Idea</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    From fragmented data to Skills Intelligence.
+                </h2>
+                <p class="text-slate-400 text-base sm:text-lg leading-relaxed">
+                    Skillcompass brings together multi-source signals from the labor market and analyzes dynamic relationships between skills, occupations, organizations, education, and people.
+                </p>
+            </div>
+
+            <!-- Interactive Pipeline Diagram -->
+            <div class="glass-card p-6 sm:p-10 rounded-2xl border border-slate-800 relative">
+                <div class="text-xs font-mono text-slate-400 uppercase tracking-widest mb-8 flex items-center justify-between">
+                    <span>Intelligent Data Processing Flow</span>
+                    <span class="text-cyanAccent"><i class="fa-solid fa-microchip mr-1"></i> System Architecture</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-7 gap-3 relative items-center text-center">
+                    
+                    <!-- Step 1 -->
+                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyanAccent/50 transition-all group cursor-pointer" onclick="highlightPipeline(0)">
+                        <div class="text-[10px] font-mono text-cyanAccent font-bold mb-1">INPUT</div>
+                        <i class="fa-solid fa-database text-xl text-slate-300 group-hover:text-cyanAccent mb-2"></i>
+                        <div class="text-xs font-bold text-white">Labor-Market Data</div>
+                    </div>
+
+                    <div class="hidden md:flex justify-center text-slate-600">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyanAccent/50 transition-all group cursor-pointer" onclick="highlightPipeline(1)">
+                        <div class="text-[10px] font-mono text-skyAccent font-bold mb-1">CLEAN</div>
+                        <i class="fa-solid fa-sliders text-xl text-slate-300 group-hover:text-skyAccent mb-2"></i>
+                        <div class="text-xs font-bold text-white">Data Processing</div>
+                    </div>
+
+                    <div class="hidden md:flex justify-center text-slate-600">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyanAccent/50 transition-all group cursor-pointer" onclick="highlightPipeline(2)">
+                        <div class="text-[10px] font-mono text-blueAccent font-bold mb-1">PARSE</div>
+                        <i class="fa-solid fa-filter-circle-xmark text-xl text-slate-300 group-hover:text-blueAccent mb-2"></i>
+                        <div class="text-xs font-bold text-white">Skill Extraction</div>
+                    </div>
+
+                    <div class="hidden md:flex justify-center text-slate-600">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyanAccent/50 transition-all group cursor-pointer" onclick="highlightPipeline(3)">
+                        <div class="text-[10px] font-mono text-indigo-400 font-bold mb-1">ANALYZE</div>
+                        <i class="fa-solid fa-chart-line text-xl text-slate-300 group-hover:text-indigo-400 mb-2"></i>
+                        <div class="text-xs font-bold text-white">Demand Analysis</div>
+                    </div>
+
+                </div>
+
+                <div class="my-4 flex justify-center text-slate-600 hidden md:flex">
+                    <i class="fa-solid fa-arrow-down text-lg text-slate-600"></i>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-3 items-center text-center mt-2">
+                    
+                    <!-- Step 5 -->
+                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyanAccent/50 transition-all group cursor-pointer" onclick="highlightPipeline(4)">
+                        <div class="text-[10px] font-mono text-cyanAccent font-bold mb-1">CONNECT</div>
+                        <i class="fa-solid fa-circle-nodes text-xl text-slate-300 group-hover:text-cyanAccent mb-2"></i>
+                        <div class="text-xs font-bold text-white">Skills Mapping</div>
+                    </div>
+
+                    <div class="hidden md:flex justify-center text-slate-600">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyanAccent/50 transition-all group cursor-pointer" onclick="highlightPipeline(5)">
+                        <div class="text-[10px] font-mono text-amber-400 font-bold mb-1">DETECT</div>
+                        <i class="fa-solid fa-code-compare text-xl text-slate-300 group-hover:text-amber-400 mb-2"></i>
+                        <div class="text-xs font-bold text-white">Gap Identification</div>
+                    </div>
+
+                    <div class="hidden md:flex justify-center text-slate-600">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+
+                    <!-- Step 7 -->
+                    <div class="p-4 rounded-xl bg-gradient-to-r from-blue-900/60 to-cyan-900/60 border border-cyan-500/40 hover:border-cyan-400 transition-all group cursor-pointer" onclick="highlightPipeline(6)">
+                        <div class="text-[10px] font-mono text-emerald-400 font-bold mb-1">OUTPUT</div>
+                        <i class="fa-solid fa-compass text-xl text-cyanAccent mb-2"></i>
+                        <div class="text-xs font-bold text-white">Actionable Insights</div>
+                    </div>
+
+                </div>
+
+                <!-- Pipeline Explanation Drawer -->
+                <div id="pipelineInfoBox" class="mt-6 p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-sm text-slate-300">
+                    <span class="font-bold text-white font-mono uppercase text-xs text-cyanAccent block mb-1" id="pipelineTitle">01 — Labor-Market Data Aggregation</span>
+                    <p id="pipelineDesc" class="text-slate-400 text-xs sm:text-sm">
+                        Ingesting raw unstructured signal sources across global job boards, public statistical databases, educational syllabi, and professional registries.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PLATFORM CAPABILITIES -->
+    <section id="capabilities" class="py-20 lg:py-28 bg-navy-900/60 border-y border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div class="space-y-3 max-w-2xl">
+                    <span class="text-xs font-mono uppercase tracking-widest text-cyanAccent bg-cyan-950/50 border border-cyan-800/50 px-3 py-1 rounded-full">Core Capabilities</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">What Skillcompass does</h2>
+                    <p class="text-slate-400 text-base">
+                        Systematic skills intelligence engineered to serve individuals, educators, enterprises, and public policymakers.
+                    </p>
+                </div>
+                <div class="text-xs font-mono text-slate-400 border-l-2 border-cyanAccent pl-3 py-1">
+                    Development Status: <br>
+                    <span class="text-slate-200 font-semibold">Active R&D & Prototyping</span>
+                </div>
+            </div>
+
+            <!-- 6 Capability Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- 01 -->
+                <div class="glass-card p-8 rounded-2xl relative border border-slate-800 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="font-mono text-2xl font-black text-slate-600 group-hover:text-cyanAccent transition-colors">01</span>
+                            <div class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-cyanAccent">
+                                <i class="fa-solid fa-chart-pie text-lg"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Labor-Market Intelligence</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Analyze continuous labor-market signals to identify changing demand patterns and structural employment trends across geographic regions.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono text-slate-400">
+                        <span>Signal Analytics</span>
+                        <span class="text-cyanAccent">Phase 1 Architecture</span>
+                    </div>
+                </div>
+
+                <!-- 02 -->
+                <div class="glass-card p-8 rounded-2xl relative border border-slate-800 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="font-mono text-2xl font-black text-slate-600 group-hover:text-cyanAccent transition-colors">02</span>
+                            <div class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-skyAccent">
+                                <i class="fa-solid fa-brain text-lg"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Skills Intelligence</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Identify emerging, declining, and evolving skill requirements across traditional and newly forming industry occupations.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono text-slate-400">
+                        <span>Trend Identification</span>
+                        <span class="text-skyAccent">Phase 2 R&D</span>
+                    </div>
+                </div>
+
+                <!-- 03 -->
+                <div class="glass-card p-8 rounded-2xl relative border border-slate-800 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="font-mono text-2xl font-black text-slate-600 group-hover:text-cyanAccent transition-colors">03</span>
+                            <div class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-blueAccent">
+                                <i class="fa-solid fa-diagram-project text-lg"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Skills Mapping</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Map complex multi-dimensional relationships between skills, job roles, individual capabilities, education frameworks, and organizations.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono text-slate-400">
+                        <span>Relational Graph</span>
+                        <span class="text-blueAccent">Core Feature</span>
+                    </div>
+                </div>
+
+                <!-- 04 -->
+                <div class="glass-card p-8 rounded-2xl relative border border-slate-800 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="font-mono text-2xl font-black text-slate-600 group-hover:text-cyanAccent transition-colors">04</span>
+                            <div class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-amber-400">
+                                <i class="fa-solid fa-magnifying-glass-chart text-lg"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Skills Gap Analysis</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Detect critical mismatches between current human capabilities, university curricula, and rapidly shifting market expectations.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono text-slate-400">
+                        <span>Mismatch Analytics</span>
+                        <span class="text-amber-400">Phase 2 R&D</span>
+                    </div>
+                </div>
+
+                <!-- 05 -->
+                <div class="glass-card p-8 rounded-2xl relative border border-slate-800 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="font-mono text-2xl font-black text-slate-600 group-hover:text-cyanAccent transition-colors">05</span>
+                            <div class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-emerald-400">
+                                <i class="fa-solid fa-route text-lg"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Personalized Navigation</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Support the creation of data-driven learning paths connecting individuals with verified market opportunities and target skills.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono text-slate-400">
+                        <span>Adaptive Pathways</span>
+                        <span class="text-emerald-400">Phase 3 Roadmap</span>
+                    </div>
+                </div>
+
+                <!-- 06 -->
+                <div class="glass-card p-8 rounded-2xl relative border border-slate-800 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="font-mono text-2xl font-black text-slate-600 group-hover:text-cyanAccent transition-colors">06</span>
+                            <div class="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-purple-400">
+                                <i class="fa-solid fa-building-user text-lg"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Organizational Intelligence</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Empower enterprises to evaluate internal talent pools, optimize reskilling strategies, and benchmark workforce readiness.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono text-slate-400">
+                        <span>Enterprise Benchmarking</span>
+                        <span class="text-purple-400">Phase 3 Roadmap</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="py-20 lg:py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <span class="text-xs font-mono uppercase tracking-widest text-cyanAccent bg-cyan-950/50 border border-cyan-800/50 px-3 py-1 rounded-full">Methodology</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">How Skillcompass Works</h2>
+                <p class="text-slate-400 text-base sm:text-lg">
+                    A disciplined five-step analytical pipeline transforming messy labor signals into strategic intelligence.
+                </p>
+            </div>
+
+            <!-- Steps Tabs Header -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-8" id="stepsNav">
+                <button onclick="setStep(1)" id="stepBtn1" class="step-btn p-4 rounded-xl glass-card border border-cyanAccent bg-slate-800/80 text-left transition-all">
+                    <span class="text-[10px] font-mono text-cyanAccent uppercase font-bold block mb-1">STEP 01</span>
+                    <span class="text-sm font-bold text-white flex items-center justify-between">
+                        Collect <i class="fa-solid fa-download text-xs text-slate-400"></i>
+                    </span>
+                </button>
+                
+                <button onclick="setStep(2)" id="stepBtn2" class="step-btn p-4 rounded-xl glass-card border border-slate-800 text-left hover:border-slate-700 transition-all">
+                    <span class="text-[10px] font-mono text-slate-500 uppercase font-bold block mb-1">STEP 02</span>
+                    <span class="text-sm font-bold text-white flex items-center justify-between">
+                        Analyze <i class="fa-solid fa-gears text-xs text-slate-400"></i>
+                    </span>
+                </button>
+
+                <button onclick="setStep(3)" id="stepBtn3" class="step-btn p-4 rounded-xl glass-card border border-slate-800 text-left hover:border-slate-700 transition-all">
+                    <span class="text-[10px] font-mono text-slate-500 uppercase font-bold block mb-1">STEP 03</span>
+                    <span class="text-sm font-bold text-white flex items-center justify-between">
+                        Map <i class="fa-solid fa-network-wired text-xs text-slate-400"></i>
+                    </span>
+                </button>
+
+                <button onclick="setStep(4)" id="stepBtn4" class="step-btn p-4 rounded-xl glass-card border border-slate-800 text-left hover:border-slate-700 transition-all">
+                    <span class="text-[10px] font-mono text-slate-500 uppercase font-bold block mb-1">STEP 04</span>
+                    <span class="text-sm font-bold text-white flex items-center justify-between">
+                        Identify <i class="fa-solid fa-bullseye text-xs text-slate-400"></i>
+                    </span>
+                </button>
+
+                <button onclick="setStep(5)" id="stepBtn5" class="step-btn p-4 rounded-xl glass-card border border-slate-800 text-left hover:border-slate-700 transition-all col-span-2 md:col-span-1">
+                    <span class="text-[10px] font-mono text-slate-500 uppercase font-bold block mb-1">STEP 05</span>
+                    <span class="text-sm font-bold text-white flex items-center justify-between">
+                        Navigate <i class="fa-solid fa-compass text-xs text-slate-400"></i>
+                    </span>
+                </button>
+            </div>
+
+            <!-- Step Display Box -->
+            <div class="glass-card p-8 rounded-2xl border border-slate-800" id="stepDetailCard">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="inline-block px-3 py-1 rounded bg-cyan-950/80 border border-cyan-800 text-cyanAccent font-mono text-xs font-semibold" id="stepNumber">
+                            STEP 01 OF 05
+                        </div>
+                        <h3 class="text-2xl font-bold text-white" id="stepTitle">Collect — Gather relevant labor-market and skills data</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed" id="stepBody">
+                            Continuously aggregate multi-source labor market signals including public occupation databases, corporate job descriptions, academic syllabi, online credential providers, and economic survey datasets.
+                        </p>
+                        <ul class="space-y-2 text-xs font-mono text-slate-400 pt-2" id="stepBullets">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyanAccent"></i> Multi-source automated data aggregation</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyanAccent"></i> Dynamic taxonomy integration</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyanAccent"></i> Unstructured text ingestion pipeline</li>
+                        </ul>
+                    </div>
+                    <div class="lg:col-span-5 bg-navy-950 p-6 rounded-xl border border-slate-800 text-center font-mono space-y-3">
+                        <div class="w-16 h-16 rounded-2xl bg-cyan-950/60 border border-cyan-800/80 flex items-center justify-center text-cyanAccent text-2xl mx-auto" id="stepIcon">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <div class="text-xs text-slate-400 uppercase tracking-widest" id="stepPhaseTag">Phase 1 Data Ingestion</div>
+                        <div class="text-sm font-semibold text-white" id="stepOutputTag">Raw Skill Signals → Clean Data Lakes</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- THE SKILLS GRAPH (SIGNATURE CANVAS SECTION) -->
+    <section id="graph" class="py-20 lg:py-28 bg-navy-900/80 border-y border-slate-800 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+                <div class="space-y-3 max-w-2xl">
+                    <span class="text-xs font-mono uppercase tracking-widest text-cyanAccent bg-cyan-950/50 border border-cyan-800/50 px-3 py-1 rounded-full">Signature Visualizer</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">The Skills Graph</h2>
+                    <p class="text-slate-400 text-base">
+                        A connected map of the skills economy. Skillcompass models entities through their dynamic interconnections rather than isolated taxonomy lists.
+                    </p>
+                </div>
+                
+                <!-- Entity Filter Controls -->
+                <div class="flex flex-wrap gap-2 text-xs font-mono">
+                    <button onclick="filterGraph('ALL')" class="filter-btn px-3 py-1.5 rounded-lg bg-cyanAccent text-navy-950 font-bold border border-cyanAccent">ALL</button>
+                    <button onclick="filterGraph('SKILL')" class="filter-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700">SKILLS</button>
+                    <button onclick="filterGraph('JOB')" class="filter-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700">JOBS</button>
+                    <button onclick="filterGraph('INDUSTRY')" class="filter-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700">INDUSTRIES</button>
+                    <button onclick="filterGraph('EDUCATION')" class="filter-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700">EDUCATION</button>
+                </div>
+            </div>
+
+            <!-- Canvas + Node Inspector Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Main Canvas Container -->
+                <div class="lg:col-span-8 glass-card rounded-2xl border border-slate-800 p-4 relative overflow-hidden flex flex-col justify-between">
+                    
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-3 text-xs font-mono text-slate-400">
+                        <span class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-cyanAccent animate-ping"></span>
+                            <span>SKILLS ECONOMY KNOWLEDGE GRAPH</span>
+                        </span>
+                        <span>Click or drag nodes to inspect</span>
+                    </div>
+
+                    <div class="relative w-full h-[450px] bg-navy-950/90 rounded-xl overflow-hidden border border-slate-800">
+                        <canvas id="skillsGraphCanvas" class="w-full h-full cursor-crosshair"></canvas>
+                        
+                        <!-- Overlay Controls -->
+                        <div class="absolute top-3 right-3 flex flex-col gap-2">
+                            <button onclick="resetGraphView()" class="w-8 h-8 rounded-lg bg-navy-900/80 border border-slate-700 text-slate-300 hover:text-white flex items-center justify-center text-xs" title="Reset Camera">
+                                <i class="fa-solid fa-arrows-to-center"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex flex-wrap items-center justify-between gap-4 text-[11px] font-mono text-slate-400 pt-2 border-t border-slate-800">
+                        <div class="flex items-center gap-4">
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-cyanAccent"></span> Skills</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-skyAccent"></span> Jobs</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Education</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span> Organizations</span>
+                        </div>
+                        <span id="nodeCountLabel">Entities Visualized: 16 Nodes / 24 Edge Relations</span>
+                    </div>
+
+                </div>
+
+                <!-- Inspector Panel -->
+                <div class="lg:col-span-4 glass-card rounded-2xl border border-slate-800 p-6 flex flex-col justify-between space-y-6">
+                    <div>
+                        <div class="text-xs font-mono text-slate-500 uppercase tracking-widest mb-4 flex items-center justify-between">
+                            <span>Node Inspector</span>
+                            <span class="text-cyanAccent" id="nodeCategoryTag">SKILL ENTITY</span>
+                        </div>
+
+                        <div class="space-y-4" id="inspectorContent">
+                            <div>
+                                <h3 class="text-2xl font-bold text-white" id="nodeTitle">Python Programming</h3>
+                                <p class="text-slate-400 text-xs mt-1" id="nodeSubtitle">Core Technical Competency in Data & AI</p>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2 text-xs">
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">Demand Trajectory:</span>
+                                    <span class="text-emerald-400 font-bold font-mono" id="nodeMetric1">+28% YoY Growth</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-slate-400">Centrality Score:</span>
+                                    <span class="text-cyanAccent font-bold font-mono" id="nodeMetric2">0.94 High Impact</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="text-xs font-mono uppercase text-slate-400 mb-2">Connected Entities:</h4>
+                                <div class="space-y-2 text-xs" id="nodeConnections">
+                                    <div class="p-2 rounded bg-slate-900 border border-slate-800 flex items-center justify-between">
+                                        <span class="text-slate-200">Data Analyst</span>
+                                        <span class="text-[10px] font-mono text-skyAccent">Job Role</span>
+                                    </div>
+                                    <div class="p-2 rounded bg-slate-900 border border-slate-800 flex items-center justify-between">
+                                        <span class="text-slate-200">Machine Learning Engineer</span>
+                                        <span class="text-[10px] font-mono text-skyAccent">Job Role</span>
+                                    </div>
+                                    <div class="p-2 rounded bg-slate-900 border border-slate-800 flex items-center justify-between">
+                                        <span class="text-slate-200">Data Science B.S.</span>
+                                        <span class="text-[10px] font-mono text-emerald-400">Education Program</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-cyan-950/40 border border-cyan-800/60 text-xs text-slate-300">
+                        <i class="fa-solid fa-circle-info text-cyanAccent mr-1.5"></i>
+                        Select any node in the interactive graph to view relational mapping details.
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- USE CASES SECTION -->
+    <section id="use-cases" class="py-20 lg:py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <span class="text-xs font-mono uppercase tracking-widest text-skyAccent bg-sky-950/50 border border-sky-800/50 px-3 py-1 rounded-full">Target Stakeholders</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Built for the entire skills ecosystem</h2>
+                <p class="text-slate-400 text-base sm:text-lg">
+                    Skillcompass provides actionable, data-driven clarity tailored to distinct market participants.
+                </p>
+            </div>
+
+            <!-- Audience Tab Bar -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10 text-xs font-mono">
+                <button onclick="setAudience(0)" id="audBtn0" class="aud-btn px-4 py-2.5 rounded-xl bg-cyanAccent text-navy-950 font-bold border border-cyanAccent transition-all">
+                    <i class="fa-solid fa-user text-xs mr-1"></i> For Individuals
+                </button>
+                <button onclick="setAudience(1)" id="audBtn1" class="aud-btn px-4 py-2.5 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 transition-all">
+                    <i class="fa-solid fa-building-columns text-xs mr-1"></i> For Universities
+                </button>
+                <button onclick="setAudience(2)" id="audBtn2" class="aud-btn px-4 py-2.5 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 transition-all">
+                    <i class="fa-solid fa-briefcase text-xs mr-1"></i> For Employers
+                </button>
+                <button onclick="setAudience(3)" id="audBtn3" class="aud-btn px-4 py-2.5 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 transition-all">
+                    <i class="fa-solid fa-landmark text-xs mr-1"></i> For Public Institutions
+                </button>
+                <button onclick="setAudience(4)" id="audBtn4" class="aud-btn px-4 py-2.5 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 transition-all">
+                    <i class="fa-solid fa-microscope text-xs mr-1"></i> For Researchers
+                </button>
+            </div>
+
+            <!-- Audience Content Box -->
+            <div class="glass-card p-8 sm:p-12 rounded-2xl border border-slate-800 max-w-4xl mx-auto" id="audienceCard">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-8 space-y-4">
+                        <div class="text-xs font-mono text-cyanAccent uppercase tracking-wider" id="audCategory">CAREER & SKILL DEVELOPMENT</div>
+                        <h3 class="text-2xl font-bold text-white" id="audTitle">Understand which skills are becoming most relevant</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed" id="audDesc">
+                            Navigate career trajectories with data-backed foresight. Gain visibility into emerging skill demands, identify personal capability gaps, and discover verified educational pathways that maximize long-term market alignment.
+                        </p>
+                        <div class="pt-2 flex flex-wrap gap-2 text-xs font-mono text-slate-400" id="audTags">
+                            <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300">Reskilling Guidance</span>
+                            <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300">Pathway Mapping</span>
+                            <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300">Market Relevance</span>
+                        </div>
+                    </div>
+                    <div class="md:col-span-4 p-6 bg-navy-950 rounded-xl border border-slate-800 text-center space-y-3">
+                        <i class="fa-solid fa-compass-drafting text-4xl text-cyanAccent" id="audIcon"></i>
+                        <div class="text-xs font-bold text-white" id="audHighlight">Personalized Navigation</div>
+                        <p class="text-[11px] text-slate-400 leading-snug">Designed for continuous lifelong learning and career agility.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DATA + AI SECTION -->
+    <section id="technology" class="py-20 lg:py-28 bg-navy-900/60 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs font-mono uppercase tracking-widest text-cyanAccent bg-cyan-950/50 border border-cyan-800/50 px-3 py-1 rounded-full">Technology Philosophy</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Intelligence built from data.</h2>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Skillcompass combines mathematical statistics, natural language processing, and Machine Learning techniques to extract clean, reliable signal from complex labor data.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 text-xs font-mono">
+                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                            <i class="fa-solid fa-filter text-cyanAccent mb-1 block text-sm"></i>
+                            <span class="text-slate-200 font-bold block">NLP & Extraction</span>
+                            <span class="text-slate-400">Parsing unstructured text</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                            <i class="fa-solid fa-chart-scatter text-skyAccent mb-1 block text-sm"></i>
+                            <span class="text-slate-200 font-bold block">Statistical Clustering</span>
+                            <span class="text-slate-400">Skill taxonomy grouping</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                            <i class="fa-solid fa-arrow-trend-up text-emerald-400 mb-1 block text-sm"></i>
+                            <span class="text-slate-200 font-bold block">Temporal Trend Models</span>
+                            <span class="text-slate-400">Demand trajectory shifts</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-900 border border-slate-800">
+                            <i class="fa-solid fa-network-wired text-purple-400 mb-1 block text-sm"></i>
+                            <span class="text-slate-200 font-bold block">Graph Embeddings</span>
+                            <span class="text-slate-400">Relational entity mapping</span>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-slate-400 italic">
+                        * Note: Systems and analytical pipelines are under continuous R&D and algorithmic refinement.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 space-y-4">
+                        <div class="text-xs font-mono text-slate-400 uppercase tracking-widest pb-3 border-b border-slate-800 flex justify-between">
+                            <span>Data Architecture Layers</span>
+                            <span class="text-cyanAccent font-bold">R&D Framework</span>
+                        </div>
+
+                        <div class="space-y-3 font-mono text-xs">
+                            <div class="p-3 rounded-lg bg-navy-950 border border-slate-800 flex items-center justify-between">
+                                <span class="text-slate-300">01 Raw Signal Source Processing</span>
+                                <span class="text-cyanAccent">Ingestion</span>
+                            </div>
+                            <div class="p-3 rounded-lg bg-navy-950 border border-slate-800 flex items-center justify-between">
+                                <span class="text-slate-300">02 Normalization & Deduplication</span>
+                                <span class="text-skyAccent">Data Quality</span>
+                            </div>
+                            <div class="p-3 rounded-lg bg-navy-950 border border-slate-800 flex items-center justify-between">
+                                <span class="text-slate-300">03 Natural Language Skill Extraction</span>
+                                <span class="text-blueAccent">NLP Engine</span>
+                            </div>
+                            <div class="p-3 rounded-lg bg-navy-950 border border-slate-800 flex items-center justify-between">
+                                <span class="text-slate-300">04 Entity Relationship Graph Building</span>
+                                <span class="text-emerald-400">Skills Graph</span>
+                            </div>
+                            <div class="p-3 rounded-lg bg-navy-950 border border-slate-800 flex items-center justify-between">
+                                <span class="text-slate-300">05 AI-Assisted Insight Synthesis</span>
+                                <span class="text-purple-400">Intelligence Layer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DATA QUALITY SECTION -->
+    <section class="py-20 lg:py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <span class="text-xs font-mono uppercase tracking-widest text-cyanAccent bg-cyan-950/50 border border-cyan-800/50 px-3 py-1 rounded-full">Rigorous Foundation</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Intelligence starts with reliable data.
+                </h2>
+                <p class="text-slate-400 text-base sm:text-lg">
+                    Reflecting founder Sara Şahin's statistical and data quality background, Skillcompass prioritizes analytical integrity over sensationalized automated claims.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <i class="fa-solid fa-shield-halved text-2xl text-cyanAccent mb-3"></i>
+                    <h3 class="text-base font-bold text-white mb-2">Source Validation</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Continuous auditing of input datasets to maintain credibility and eliminate duplicate or fraudulent job market signals.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <i class="fa-solid fa-sitemap text-2xl text-skyAccent mb-3"></i>
+                    <h3 class="text-base font-bold text-white mb-2">Taxonomy Alignment</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Harmonizing global frameworks (such as ESCO and O*NET) with real-world industry terminology and evolving titles.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <i class="fa-solid fa-clone text-2xl text-blueAccent mb-3"></i>
+                    <h3 class="text-base font-bold text-white mb-2">Duplicate Handling & Normalization</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Applying statistical deduplication models to prevent repetitive job postings from distorting skill demand metrics.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <i class="fa-solid fa-timeline text-2xl text-emerald-400 mb-3"></i>
+                    <h3 class="text-base font-bold text-white mb-2">Temporal Analysis</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Evaluating time-series skill fluctuations to distinguish transient noise from sustained structural shifts.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <i class="fa-solid fa-scale-balanced text-2xl text-amber-400 mb-3"></i>
+                    <h3 class="text-base font-bold text-white mb-2">Bias Awareness</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Recognizing regional, sectorial, and digital reporting biases inherent in online hiring datasets.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <i class="fa-solid fa-database text-2xl text-purple-400 mb-3"></i>
+                    <h3 class="text-base font-bold text-white mb-2">Data Consistency</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Ensuring repeatable analytical methodologies and rigorous statistical validation across all published insights.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ROADMAP SECTION -->
+    <section id="roadmap" class="py-20 lg:py-28 bg-navy-900/60 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <span class="text-xs font-mono uppercase tracking-widest text-cyanAccent bg-cyan-950/50 border border-cyan-800/50 px-3 py-1 rounded-full">Strategic Timeline</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Product Development Roadmap</h2>
+                <p class="text-slate-400 text-base">
+                    A multi-phase plan building from foundational taxonomy mapping to a global skills intelligence infrastructure.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Phase 1 -->
+                <div class="glass-card p-6 rounded-2xl border border-cyan-500/40 relative">
+                    <div class="text-xs font-mono text-cyanAccent font-bold uppercase mb-2">PHASE 1 — IN PROGRESS</div>
+                    <h3 class="text-lg font-bold text-white mb-3">Foundation</h3>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-cyanAccent mt-0.5"></i> Skills taxonomy architecture</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-cyanAccent mt-0.5"></i> Initial labor dataset collection</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-cyanAccent mt-0.5"></i> Statistical framework formulation</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-cyanAccent mt-0.5"></i> Skills Graph prototype</li>
+                    </ul>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 relative">
+                    <div class="text-xs font-mono text-skyAccent font-bold uppercase mb-2">PHASE 2 — NEXT</div>
+                    <h3 class="text-lg font-bold text-white mb-3">Intelligence Layer</h3>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-skyAccent mt-0.5"></i> NLP skill extraction engine</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-skyAccent mt-0.5"></i> Automated demand trend analysis</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-skyAccent mt-0.5"></i> Skills gap detection algorithms</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-skyAccent mt-0.5"></i> Partner data integrations</li>
+                    </ul>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 relative">
+                    <div class="text-xs font-mono text-emerald-400 font-bold uppercase mb-2">PHASE 3 — FUTURE</div>
+                    <h3 class="text-lg font-bold text-white mb-3">Navigation</h3>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-emerald-400 mt-0.5"></i> Personalized learning pathways</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-emerald-400 mt-0.5"></i> University curriculum alignment</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-emerald-400 mt-0.5"></i> Enterprise talent gap dashboard</li>
+                    </ul>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 relative">
+                    <div class="text-xs font-mono text-purple-400 font-bold uppercase mb-2">PHASE 4 — VISION</div>
+                    <h3 class="text-lg font-bold text-white mb-3">Global Infrastructure</h3>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-purple-400 mt-0.5"></i> Cross-market international benchmarking</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-purple-400 mt-0.5"></i> Real-time skill forecasting</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-purple-400 mt-0.5"></i> Ecosystem API & data feeds</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BUSINESS MODEL SECTION -->
+    <section class="py-20 lg:py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <span class="text-xs font-mono uppercase tracking-widest text-skyAccent bg-sky-950/50 border border-sky-800/50 px-3 py-1 rounded-full">Value Model</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Built for multiple stakeholders</h2>
+                <p class="text-slate-400 text-base sm:text-lg">
+                    Sustainable commercial and institutional models designed to support long-term intelligence infrastructure.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <span class="text-xs font-mono text-cyanAccent uppercase font-bold block mb-2">B2B Enterprise</span>
+                    <h3 class="text-lg font-bold text-white mb-2">Workforce Intelligence</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Organizations subscribe for internal skills mapping, talent capability benchmarking, and reskilling strategies.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <span class="text-xs font-mono text-skyAccent uppercase font-bold block mb-2">B2B2C Education</span>
+                    <h3 class="text-lg font-bold text-white mb-2">Learning Pathways</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Education providers deliver market-aligned learning navigation tools directly to students and alumni.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <span class="text-xs font-mono text-emerald-400 uppercase font-bold block mb-2">Institutional</span>
+                    <h3 class="text-lg font-bold text-white mb-2">Public Sector & Policy</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Public institutions access regional labor market analytics to guide economic and workforce development.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <span class="text-xs font-mono text-purple-400 uppercase font-bold block mb-2">Data Services</span>
+                    <h3 class="text-lg font-bold text-white mb-2">Custom Market Feeds</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Tailored research reports and API intelligence streams for policy analysts, researchers, and consultancies.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- COMPETITIVE DIFFERENTIATION -->
+    <section class="py-20 lg:py-28 bg-navy-900/80 border-y border-slate-800 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <span class="text-xs font-mono uppercase tracking-widest text-cyanAccent bg-cyan-950/50 border border-cyan-800/50 px-3 py-1 rounded-full">Differentiation</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Why Skills Intelligence?</h2>
+                <p class="text-slate-400 text-base sm:text-lg">
+                    From static categories to connected intelligence.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                
+                <!-- Traditional Fragmented View -->
+                <div class="glass-card p-8 rounded-2xl border border-red-500/20 bg-slate-900/60 relative">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-red-950/60 border border-red-800/60 text-red-400 text-xs font-mono font-bold mb-6">
+                        <i class="fa-solid fa-xmark"></i> TRADITIONAL FRAGMENTED VIEW
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+                            <span>Static Job Titles</span>
+                            <span class="text-red-400">Isolated</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+                            <span>Outdated Curricula</span>
+                            <span class="text-red-400">Disconnected</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+                            <span>Resumes & Credentials</span>
+                            <span class="text-red-400">Static</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+                            <span>Annual Surveys</span>
+                            <span class="text-red-400">Lagging Data</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-6 text-xs text-slate-400 leading-relaxed border-t border-slate-800/80 pt-4">
+                        Traditional platforms focus on rigid categories and static documents, missing the evolving skills beneath job titles.
+                    </p>
+                </div>
+
+                <!-- Skillcompass Connected View -->
+                <div class="glass-card p-8 rounded-2xl border border-cyan-500/40 bg-navy-950 relative">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-cyan-950 border border-cyan-800 text-cyanAccent text-xs font-mono font-bold mb-6">
+                        <i class="fa-solid fa-check"></i> SKILLCOMPASS CONNECTED INTELLIGENCE
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-cyan-500/30 font-mono text-xs text-slate-200 text-center space-y-2">
+                        <div class="text-cyanAccent font-bold">Connected Relational Graph</div>
+                        <div class="text-[11px] text-slate-300 py-2 border-y border-slate-800 flex flex-wrap items-center justify-center gap-1.5">
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-white">Jobs</span> ↔ 
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-cyanAccent">Skills</span> ↔ 
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-white">People</span> ↔ 
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-skyAccent">Education</span> ↔ 
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-white">Organizations</span> ↔ 
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-emerald-400">Market Demand</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-6 text-xs text-slate-300 leading-relaxed border-t border-slate-800/80 pt-4">
+                        Skillcompass maps the dynamic interrelationships connecting skills, people, learning, and enterprise demand in real time.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOUNDER SECTION -->
+    <section id="founder" class="py-20 lg:py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-slate-800 max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- Founder Avatar Placeholder / Icon Badge -->
+                    <div class="lg:col-span-4 text-center lg:text-left">
+                        <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl bg-gradient-to-tr from-blueAccent via-cyanAccent to-skyAccent p-1 mx-auto lg:mx-0 shadow-2xl">
+                            <div class="w-full h-full bg-navy-950 rounded-[14px] flex flex-col items-center justify-center p-4 text-center">
+                                <i class="fa-solid fa-user-gear text-4xl text-cyanAccent mb-2"></i>
+                                <span class="text-xs font-bold font-mono text-slate-200">Sara Şahin</span>
+                                <span class="text-[10px] font-mono text-slate-400">Istanbul, Türkiye</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Founder Bio -->
+                    <div class="lg:col-span-8 space-y-4">
+                        <span class="text-xs font-mono uppercase tracking-widest text-cyanAccent bg-cyan-950/50 border border-cyan-800/50 px-3 py-1 rounded-full">Founder & Project Lead</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Sara Şahin</h2>
+                        
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Sara Şahin is a Data and Business Analyst working across data quality, statistical analysis, business analysis, survey research, and data-driven decision support. Her background combines mathematical statistics, data analytics, business analysis, Power BI, Python, R, SQL, and research.
+                        </p>
+
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                            She is developing Skillcompass to explore how AI and data analytics can help understand changing labor-market skill demand and improve alignment between people, education, organizations, and the market.
+                        </p>
+
+                        <div class="pt-4 flex flex-wrap items-center gap-4 border-t border-slate-800">
+                            <a href="https://www.linkedin.com/in/sara11shahin/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all">
+                                <i class="fa-brands fa-linkedin text-sm"></i> LinkedIn Profile
+                            </a>
+                            <a href="mailto:sarasahin714@gmail.com" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all">
+                                <i class="fa-solid fa-envelope text-sm"></i> Direct Contact
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROJECT CREDIBILITY -->
+    <section class="py-20 lg:py-28 bg-navy-900/60 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-12">
+                <span class="text-xs font-mono uppercase tracking-widest text-cyanAccent bg-cyan-950/50 border border-cyan-800/50 px-3 py-1 rounded-full">Development Context</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">From concept to ecosystem</h2>
+                <p class="text-slate-400 text-base">
+                    Skillcompass is being developed within the vibrant innovation ecosystem of Türkiye, combining intellectual property exploration and software technology development.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-center">
+                
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-2">
+                    <i class="fa-solid fa-location-dot text-2xl text-cyanAccent mb-2"></i>
+                    <h3 class="text-base font-bold text-white">Istanbul Hub</h3>
+                    <p class="text-slate-400 text-xs">
+                        Based in Istanbul, Türkiye — serving as a bridge between regional labor dynamics and international workforce markets.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-2">
+                    <i class="fa-solid fa-lightbulb text-2xl text-skyAccent mb-2"></i>
+                    <h3 class="text-base font-bold text-white">Innovation Initiatives</h3>
+                    <p class="text-slate-400 text-xs">
+                        Developed with active participation context in technology innovation programs, including WIPO and TEKNOFEST project initiatives.
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-2">
+                    <i class="fa-solid fa-microchip text-2xl text-emerald-400 mb-2"></i>
+                    <h3 class="text-base font-bold text-white">AI & Data R&D</h3>
+                    <p class="text-slate-400 text-xs">
+                        Focusing on sustainable analytical modeling, skill taxonomy mapping, and actionable labor market visualization.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION & CONTACT SECTION -->
+    <section id="contact" class="py-20 lg:py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs font-mono uppercase tracking-widest text-cyanAccent bg-cyan-950/50 border border-cyan-800/50 px-3 py-1 rounded-full">Get In Touch</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Help shape the future of skills intelligence.</h2>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Skillcompass is being developed at the intersection of AI, data, labor-market intelligence, education, and workforce development. We welcome discussions with potential investors, university collaborators, enterprise pilot partners, and research institutions.
+                    </p>
+
+                    <div class="space-y-4 pt-4 text-xs font-mono">
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800">
+                            <i class="fa-solid fa-envelope text-cyanAccent text-base"></i>
+                            <div>
+                                <span class="text-slate-400 block">Direct Email</span>
+                                <a href="mailto:sarasahin714@gmail.com" class="text-white font-bold hover:text-cyanAccent">sarasahin714@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800">
+                            <i class="fa-brands fa-linkedin text-skyAccent text-base"></i>
+                            <div>
+                                <span class="text-slate-400 block">LinkedIn Connection</span>
+                                <a href="https://www.linkedin.com/in/sara11shahin/" target="_blank" rel="noopener noreferrer" class="text-white font-bold hover:text-skyAccent">linkedin.com/in/sara11shahin/</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-900 border border-slate-800">
+                            <i class="fa-solid fa-location-dot text-emerald-400 text-base"></i>
+                            <div>
+                                <span class="text-slate-400 block">Project Location</span>
+                                <span class="text-white font-bold">Istanbul, Türkiye</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Form -->
+                <div class="lg:col-span-6">
+                    <div class="glass-card p-8 rounded-2xl border border-slate-800 space-y-4">
+                        <h3 class="text-xl font-bold text-white">Partner or Connect</h3>
+                        <p class="text-xs text-slate-400">Send an inquiry directly to founder Sara Şahin.</p>
+
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4 pt-2">
+                            <div>
+                                <label class="block text-xs font-mono text-slate-300 mb-1">Your Name</label>
+                                <input type="text" required placeholder="Dr. Alex Morgan" class="w-full px-4 py-2.5 rounded-xl bg-navy-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyanAccent transition-colors">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-mono text-slate-300 mb-1">Organization / Institution</label>
+                                <input type="text" required placeholder="University or Technology Venture" class="w-full px-4 py-2.5 rounded-xl bg-navy-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyanAccent transition-colors">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-mono text-slate-300 mb-1">Email Address</label>
+                                <input type="email" required placeholder="alex@institution.edu" class="w-full px-4 py-2.5 rounded-xl bg-navy-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyanAccent transition-colors">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-mono text-slate-300 mb-1">Inquiry Type</label>
+                                <select class="w-full px-4 py-2.5 rounded-xl bg-navy-950 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyanAccent transition-colors">
+                                    <option value="Investment / Accelerator">Investment & Acceleration</option>
+                                    <option value="University Partnership">University & Curriculum Collaboration</option>
+                                    <option value="Enterprise Pilot">Enterprise Workforce Intelligence</option>
+                                    <option value="Research Collaboration">Research & Data Collaboration</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-mono text-slate-300 mb-1">Message</label>
+                                <textarea rows="3" required placeholder="Brief description of your interest in Skillcompass..." class="w-full px-4 py-2.5 rounded-xl bg-navy-950 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyanAccent transition-colors"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-blueAccent hover:bg-sky-500 text-white font-bold text-sm transition-all shadow-lg shadow-blue-900/30 flex items-center justify-center gap-2">
+                                <span>Send Inquiry</span>
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                            </button>
+                        </form>
+
+                        <div id="formSuccessMessage" class="hidden p-4 rounded-xl bg-emerald-950/80 border border-emerald-800 text-emerald-300 text-xs font-mono text-center">
+                            <i class="fa-solid fa-circle-check text-base mb-1 block text-emerald-400"></i>
+                            Thank you for your interest! Your message parameters have been prepared. You can also email directly at <a href="mailto:sarasahin714@gmail.com" class="underline font-bold">sarasahin714@gmail.com</a>.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-950 border-t border-slate-800/80 py-12 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-blueAccent/20 border border-blueAccent/40 flex items-center justify-center text-cyanAccent">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <div>
+                        <span class="font-bold text-white text-sm block">Skillcompass</span>
+                        <span class="text-[10px] font-mono text-slate-500">AI-Powered Skills Intelligence</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-6 font-mono text-[11px]">
+                    <a href="#overview" class="hover:text-white transition-colors">Overview</a>
+                    <a href="#capabilities" class="hover:text-white transition-colors">Capabilities</a>
+                    <a href="#graph" class="hover:text-white transition-colors">Skills Graph</a>
+                    <a href="#technology" class="hover:text-white transition-colors">Data & AI</a>
+                    <a href="#founder" class="hover:text-white transition-colors">Founder</a>
+                </div>
+
+                <div class="flex items-center gap-4 text-base">
+                    <a href="https://www.linkedin.com/in/sara11shahin/" target="_blank" rel="noopener noreferrer" class="hover:text-cyanAccent transition-colors" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:sarasahin714@gmail.com" class="hover:text-cyanAccent transition-colors" title="Email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px]">
+                <p>© 2026 Skillcompass. All rights reserved. Istanbul, Türkiye.</p>
+                <p class="text-cyanAccent font-semibold">Building intelligence for a changing skills landscape.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Mobile Drawer toggle
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const menuIcon = document.getElementById('menuIcon');
+
+        mobileBtn.addEventListener('click', () => {
+            const isHidden = mobileDrawer.classList.contains('hidden');
+            if (isHidden) {
+                mobileDrawer.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                mobileDrawer.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDrawer.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Form Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('contactForm').classList.add('hidden');
+            document.getElementById('formSuccessMessage').classList.remove('hidden');
+        }
+
+        // Pipeline Info Data
+        const pipelineData = [
+            { title: "01 — Labor-Market Data Aggregation", desc: "Ingesting raw unstructured signal sources across global job boards, public statistical databases, educational syllabi, and professional registries." },
+            { title: "02 — Data Cleaning & Normalization", desc: "Removing duplicate postings, resolving language ambiguities, and standardizing entity titles using statistical algorithms." },
+            { title: "03 — Natural Language Skill Extraction", desc: "Utilizing NLP and machine learning models to detect granular skill mentions from unformatted text bodies." },
+            { title: "04 — Skill Demand Analysis", desc: "Evaluating temporal frequency and growth rates across industries to calculate real demand trajectories." },
+            { title: "05 — Skills Relational Mapping", desc: "Connecting extracted skills with parent occupations, requisite educational courses, and hiring organizations." },
+            { title: "06 — Skills Gap Detection", desc: "Comparing existing capability vectors against market expectations to isolate critical skill deficits." },
+            { title: "07 — Actionable Insights Output", desc: "Generating strategic reports, personalized learning pathways, and enterprise benchmarking visualizations." }
+        ];
+
+        function highlightPipeline(index) {
+            document.getElementById('pipelineTitle').innerText = pipelineData[index].title;
+            document.getElementById('pipelineDesc').innerText = pipelineData[index].desc;
+        }
+
+        // How It Works Step Selector
+        const stepDetails = [
+            {
+                num: "STEP 01 OF 05",
+                title: "Collect — Gather relevant labor-market and skills data",
+                body: "Continuously aggregate multi-source labor market signals including public occupation databases, corporate job descriptions, academic syllabi, online credential providers, and economic survey datasets.",
+                bullets: ["Multi-source automated data aggregation", "Dynamic taxonomy integration", "Unstructured text ingestion pipeline"],
+                icon: "fa-database",
+                phase: "Phase 1 Ingestion",
+                out: "Raw Skill Signals → Clean Data Lakes"
+            },
+            {
+                num: "STEP 02 OF 05",
+                title: "Analyze — Use analytics & AI to identify patterns and changes",
+                body: "Apply advanced natural language processing and statistical clustering to parse text, identify emerging skill terminology, and filter out transient market noise.",
+                bullets: ["NLP skill keyword extraction", "Statistical noise filtering", "Temporal demand frequency tracking"],
+                icon: "fa-gears",
+                phase: "Phase 2 Analytics",
+                out: "Structured Skill Embeddings"
+            },
+            {
+                num: "STEP 03 OF 05",
+                title: "Map — Connect skills with jobs, education, and people",
+                body: "Construct a dynamic multi-layered graph connecting individual skills to specific job roles, university courses, corporate departments, and individual profiles.",
+                bullets: ["Multi-entity knowledge graph building", "Cross-taxonomy reconciliation", "Relational weight calculations"],
+                icon: "fa-network-wired",
+                phase: "Core Relational Engine",
+                out: "Connected Skills Economy Graph"
+            },
+            {
+                num: "STEP 04 OF 05",
+                title: "Identify — Detect skill gaps and emerging requirements",
+                body: "Compare current educational curricula and internal workforce capabilities against live market demand to pinpoint critical gaps and rising skills.",
+                bullets: ["Capability gap quantification", "Emerging skill velocity detection", "Curriculum alignment scoring"],
+                icon: "fa-bullseye",
+                phase: "Gap Analytics",
+                out: "Quantified Skill Deficits"
+            },
+            {
+                num: "STEP 05 OF 05",
+                title: "Navigate — Generate actionable decision support insights",
+                body: "Deliver clear, data-informed pathways guiding students to high-demand skills, helping universities update syllabi, and enabling enterprises to reskill staff.",
+                bullets: ["Adaptive learning pathway creation", "Enterprise workforce benchmarking", "Strategic policy recommendations"],
+                icon: "fa-compass",
+                phase: "Strategic Output",
+                out: "Data-Backed Navigational Clarity"
+            }
+        ];
+
+        function setStep(stepNum) {
+            const data = stepDetails[stepNum - 1];
+            document.getElementById('stepNumber').innerText = data.num;
+            document.getElementById('stepTitle').innerText = data.title;
+            document.getElementById('stepBody').innerText = data.body;
+            document.getElementById('stepIcon').innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+            document.getElementById('stepPhaseTag').innerText = data.phase;
+            document.getElementById('stepOutputTag').innerText = data.out;
+
+            const bulletsHtml = data.bullets.map(b => `<li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyanAccent"></i> ${b}</li>`).join('');
+            document.getElementById('stepBullets').innerHTML = bulletsHtml;
+
+            // Highlight Step Buttons
+            for (let i = 1; i <= 5; i++) {
+                const btn = document.getElementById(`stepBtn${i}`);
+                if (i === stepNum) {
+                    btn.className = "step-btn p-4 rounded-xl glass-card border border-cyanAccent bg-slate-800/80 text-left transition-all";
+                } else {
+                    btn.className = "step-btn p-4 rounded-xl glass-card border border-slate-800 text-left hover:border-slate-700 transition-all";
+                }
+            }
+        }
+
+        // Use Cases Audience Tab Selector
+        const audienceData = [
+            {
+                cat: "CAREER & SKILL DEVELOPMENT",
+                title: "Understand which skills are becoming most relevant",
+                desc: "Navigate career trajectories with data-backed foresight. Gain visibility into emerging skill demands, identify personal capability gaps, and discover verified educational pathways that maximize long-term market alignment.",
+                tags: ["Reskilling Guidance", "Pathway Mapping", "Market Relevance"],
+                icon: "fa-compass-drafting",
+                highlight: "Personalized Navigation"
+            },
+            {
+                cat: "HIGHER EDUCATION & CURRICULUM",
+                title: "Align university curricula with real-world labor demand",
+                desc: "Compare degree syllabi against live labor market signals. Universities can pinpoint outdated modules, validate program learning outcomes, and rapidly introduce emerging technical competencies.",
+                tags: ["Curriculum Auditing", "Graduate Employability", "Syllabi Optimization"],
+                icon: "fa-graduation-cap",
+                highlight: "Academic Alignment"
+            },
+            {
+                cat: "ENTERPRISE & WORKFORCE",
+                title: "Benchmark internal talent and build future workforce capabilities",
+                desc: "Gain deep visibility into organizational talent pools. Identify internal skill shortages, design targeted internal mobility programs, and reduce reliance on expensive external hiring.",
+                tags: ["Talent Gap Analysis", "Reskilling Strategy", "Workforce Intelligence"],
+                icon: "fa-chart-gantt",
+                highlight: "Enterprise Benchmarking"
+            },
+            {
+                cat: "PUBLIC SECTOR & WORKFORCE POLICY",
+                title: "Formulate regional economic & workforce development strategies",
+                desc: "Empower public policy makers with macro-level skills analytics. Identify regional industrial skill shortages, direct educational funding efficiently, and foster economic resilience.",
+                tags: ["Regional Labor Policy", "Economic Forecasting", "Public Workforce"],
+                icon: "fa-landmark-flag",
+                highlight: "Policy Intelligence"
+            },
+            {
+                cat: "ACADEMIC & LABOR RESEARCH",
+                title: "Explore dynamic relationships across industries and occupations",
+                desc: "Access structured relational datasets modeling the evolution of human capability, technological adoption speed, and occupational skill drift across international borders.",
+                tags: ["Occupational Drift", "Labor Market Data", "Skills Graph Research"],
+                icon: "fa-microscope",
+                highlight: "Research Datasets"
+            }
+        ];
+
+        function setAudience(idx) {
+            const aud = audienceData[idx];
+            document.getElementById('audCategory').innerText = aud.cat;
+            document.getElementById('audTitle').innerText = aud.title;
+            document.getElementById('audDesc').innerText = aud.desc;
+            document.getElementById('audIcon').className = `fa-solid ${aud.icon} text-4xl text-cyanAccent`;
+            document.getElementById('audHighlight').innerText = aud.highlight;
+
+            const tagsHtml = aud.tags.map(t => `<span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300">${t}</span>`).join('');
+            document.getElementById('audTags').innerHTML = tagsHtml;
+
+            const btns = document.querySelectorAll('.aud-btn');
+            btns.forEach((btn, i) => {
+                if (i === idx) {
+                    btn.className = "aud-btn px-4 py-2.5 rounded-xl bg-cyanAccent text-navy-950 font-bold border border-cyanAccent transition-all";
+                } else {
+                    btn.className = "aud-btn px-4 py-2.5 rounded-xl bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 transition-all";
+                }
+            });
+        }
+
+        // Canvas Visualizers Initialization
+        window.onload = function() {
+            initHeroCanvas();
+            initSkillsGraphCanvas();
+        };
+
+        // 1. HERO CANVAS VISUALIZER
+        function initHeroCanvas() {
+            const canvas = document.getElementById('heroCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            function resize() {
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            // Nodes definition
+            const nodes = [
+                { id: 1, label: 'Skills', x: 0.5, y: 0.5, color: '#06B6D4', radius: 20 },
+                { id: 2, label: 'Jobs', x: 0.25, y: 0.3, color: '#38BDF8', radius: 15 },
+                { id: 3, label: 'People', x: 0.75, y: 0.3, color: '#0284C7', radius: 15 },
+                { id: 4, label: 'Education', x: 0.25, y: 0.7, color: '#10B981', radius: 15 },
+                { id: 5, label: 'Organizations', x: 0.75, y: 0.7, color: '#C084FC', radius: 15 },
+                { id: 6, label: 'Market', x: 0.5, y: 0.85, color: '#F59E0B', radius: 14 }
+            ];
+
+            const edges = [
+                [1,2], [1,3], [1,4], [1,5], [2,5], [3,4], [4,6], [5,6]
+            ];
+
+            let hoverNode = null;
+            let mouseX = 0, mouseY = 0;
+
+            canvas.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                mouseX = e.clientX - rect.left;
+                mouseY = e.clientY - rect.top;
+                
+                hoverNode = null;
+                nodes.forEach(n => {
+                    const nx = n.x * canvas.width;
+                    const ny = n.y * canvas.height;
+                    const dist = Math.hypot(mouseX - nx, mouseY - ny);
+                    if (dist < n.radius + 5) hoverNode = n;
+                });
+            });
+
+            function animateHero() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw Edges
+                edges.forEach(edge => {
+                    const n1 = nodes.find(n => n.id === edge[0]);
+                    const n2 = nodes.find(n => n.id === edge[1]);
+                    const x1 = n1.x * canvas.width;
+                    const y1 = n1.y * canvas.height;
+                    const x2 = n2.x * canvas.width;
+                    const y2 = n2.y * canvas.height;
+
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    ctx.strokeStyle = (hoverNode && (hoverNode.id === n1.id || hoverNode.id === n2.id)) ? '#38BDF8' : 'rgba(51, 65, 85, 0.4)';
+                    ctx.lineWidth = (hoverNode && (hoverNode.id === n1.id || hoverNode.id === n2.id)) ? 2 : 1;
+                    ctx.stroke();
+                });
+
+                // Draw Nodes
+                const time = Date.now() * 0.002;
+                nodes.forEach(n => {
+                    const nx = n.x * canvas.width + Math.sin(time + n.id) * 3;
+                    const ny = n.y * canvas.height + Math.cos(time + n.id) * 3;
+
+                    // Glow
+                    ctx.beginPath();
+                    ctx.arc(nx, ny, n.radius + 6, 0, Math.PI * 2);
+                    ctx.fillStyle = n.color + '22';
+                    ctx.fill();
+
+                    // Node Circle
+                    ctx.beginPath();
+                    ctx.arc(nx, ny, n.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = n.color;
+                    ctx.fill();
+
+                    // Text Label
+                    ctx.fillStyle = '#FFFFFF';
+                    ctx.font = '600 11px Inter';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(n.label, nx, ny + n.radius + 14);
+                });
+
+                requestAnimationFrame(animateHero);
+            }
+            animateHero();
+        }
+
+        // 2. SIGNATURE SKILLS GRAPH CANVAS
+        let graphNodes = [];
+        let graphEdges = [];
+        let selectedFilter = 'ALL';
+        let activeNode = null;
+
+        function initSkillsGraphCanvas() {
+            const canvas = document.getElementById('skillsGraphCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            function resize() {
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            // Raw entity node data
+            graphNodes = [
+                { id: '1', name: 'Python', type: 'SKILL', color: '#06B6D4', x: 0.3, y: 0.4, metric1: '+28% YoY', metric2: 'High Centrality', connections: ['Data Analyst', 'ML Engineer', 'Data Science B.S.'] },
+                { id: '2', name: 'Data Analytics', type: 'SKILL', color: '#06B6D4', x: 0.5, y: 0.3, metric1: '+34% YoY', metric2: 'Core Capability', connections: ['Data Analyst', 'BI Specialist', 'Statistics M.S.'] },
+                { id: '3', name: 'Machine Learning', type: 'SKILL', color: '#06B6D4', x: 0.2, y: 0.6, metric1: '+42% YoY', metric2: 'Emerging', connections: ['ML Engineer', 'AI Research Lab'] },
+                { id: '4', name: 'Data Analyst', type: 'JOB', color: '#38BDF8', x: 0.45, y: 0.55, metric1: 'High Demand', metric2: '2,400+ Openings', connections: ['Python', 'SQL', 'Tech Industry'] },
+                { id: '5', name: 'ML Engineer', type: 'JOB', color: '#38BDF8', x: 0.25, y: 0.75, metric1: 'Critical Shortage', metric2: 'High Value', connections: ['Python', 'Machine Learning'] },
+                { id: '6', name: 'Tech Industry', type: 'INDUSTRY', color: '#A855F7', x: 0.7, y: 0.4, metric1: 'Global Scale', metric2: 'Accelerating', connections: ['Data Analyst', 'Enterprise Corp'] },
+                { id: '7', name: 'Enterprise Corp', type: 'ORGANIZATION', color: '#C084FC', x: 0.8, y: 0.6, metric1: 'Reskilling Active', metric2: 'Partner', connections: ['Tech Industry', 'Data Analyst'] },
+                { id: '8', name: 'Data Science B.S.', type: 'EDUCATION', color: '#10B981', x: 0.4, y: 0.8, metric1: 'University Degree', metric2: 'Curriculum Aligned', connections: ['Python', 'Data Analytics'] },
+                { id: '9', name: 'SQL', type: 'SKILL', color: '#06B6D4', x: 0.6, y: 0.7, metric1: '+18% Steady', metric2: 'Baseline Skill', connections: ['Data Analyst', 'BI Specialist'] }
+            ];
+
+            graphEdges = [
+                ['1','4'], ['1','5'], ['1','8'], ['2','4'], ['2','8'], ['3','5'], ['4','6'], ['6','7'], ['4','9'], ['4','7']
+            ];
+
+            activeNode = graphNodes[0];
+
+            let isDragging = false;
+            let dragNode = null;
+
+            canvas.addEventListener('mousedown', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const mx = e.clientX - rect.left;
+                const my = e.clientY - rect.top;
+
+                graphNodes.forEach(n => {
+                    const nx = n.x * canvas.width;
+                    const ny = n.y * canvas.height;
+                    if (Math.hypot(mx - nx, my - ny) < 20) {
+                        isDragging = true;
+                        dragNode = n;
+                        activeNode = n;
+                        updateNodeInspector(n);
+                    }
+                });
+            });
+
+            canvas.addEventListener('mousemove', (e) => {
+                if (isDragging && dragNode) {
+                    const rect = canvas.getBoundingClientRect();
+                    dragNode.x = (e.clientX - rect.left) / canvas.width;
+                    dragNode.y = (e.clientY - rect.top) / canvas.height;
+                }
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                dragNode = null;
+            });
+
+            function renderGraph() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw Edges
+                graphEdges.forEach(edge => {
+                    const n1 = graphNodes.find(n => n.id === edge[0]);
+                    const n2 = graphNodes.find(n => n.id === edge[1]);
+                    if (!n1 || !n2) return;
+
+                    const isFiltered1 = selectedFilter !== 'ALL' && n1.type !== selectedFilter;
+                    const isFiltered2 = selectedFilter !== 'ALL' && n2.type !== selectedFilter;
+                    if (isFiltered1 && isFiltered2) return;
+
+                    const x1 = n1.x * canvas.width;
+                    const y1 = n1.y * canvas.height;
+                    const x2 = n2.x * canvas.width;
+                    const y2 = n2.y * canvas.height;
+
+                    const isHighlight = activeNode && (activeNode.id === n1.id || activeNode.id === n2.id);
+
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    ctx.strokeStyle = isHighlight ? '#06B6D4' : 'rgba(51, 65, 85, 0.4)';
+                    ctx.lineWidth = isHighlight ? 2 : 1;
+                    ctx.stroke();
+                });
+
+                // Draw Nodes
+                graphNodes.forEach(n => {
+                    if (selectedFilter !== 'ALL' && n.type !== selectedFilter) return;
+
+                    const nx = n.x * canvas.width;
+                    const ny = n.y * canvas.height;
+                    const isActive = activeNode && activeNode.id === n.id;
+
+                    // Glow circle
+                    ctx.beginPath();
+                    ctx.arc(nx, ny, isActive ? 22 : 16, 0, Math.PI * 2);
+                    ctx.fillStyle = isActive ? n.color + '55' : n.color + '22';
+                    ctx.fill();
+
+                    // Main Circle
+                    ctx.beginPath();
+                    ctx.arc(nx, ny, isActive ? 14 : 10, 0, Math.PI * 2);
+                    ctx.fillStyle = n.color;
+                    ctx.fill();
+
+                    // Text
+                    ctx.fillStyle = isActive ? '#FFFFFF' : '#94A3B8';
+                    ctx.font = isActive ? '700 12px Inter' : '500 11px Inter';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(n.name, nx, ny + 24);
+                });
+
+                requestAnimationFrame(renderGraph);
+            }
+            renderGraph();
+        }
+
+        function updateNodeInspector(node) {
+            document.getElementById('nodeTitle').innerText = node.name;
+            document.getElementById('nodeSubtitle').innerText = `${node.type} Entity in Skills Economy`;
+            document.getElementById('nodeCategoryTag').innerText = `${node.type} ENTITY`;
+            document.getElementById('nodeMetric1').innerText = node.metric1;
+            document.getElementById('nodeMetric2').innerText = node.metric2;
+
+            const connHtml = node.connections.map(c => `
+                <div class="p-2 rounded bg-slate-900 border border-slate-800 flex items-center justify-between">
+                    <span class="text-slate-200">${c}</span>
+                    <span class="text-[10px] font-mono text-cyanAccent">Connected</span>
+                </div>
+            `).join('');
+            document.getElementById('nodeConnections').innerHTML = connHtml;
+        }
+
+        function filterGraph(type) {
+            selectedFilter = type;
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(b => {
+                if (b.innerText === type) {
+                    b.className = "filter-btn px-3 py-1.5 rounded-lg bg-cyanAccent text-navy-950 font-bold border border-cyanAccent";
+                } else {
+                    b.className = "filter-btn px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white border border-slate-700";
+                }
+            });
+        }
+
+        function resetGraphView() {
+            selectedFilter = 'ALL';
+            filterGraph('ALL');
+        }
+    </script>
+</body>
+</html>
